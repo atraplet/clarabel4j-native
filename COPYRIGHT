@@ -3,9 +3,10 @@ CH-8610 Uster, Switzerland, info@ustermetrics.com, www.ustermetrics.com.
 
 Clarabel: An interior-point solver for conic programs with quadratic
 objectives native code.
-Copyright 2022 University of Oxford Control Group, Department of Engineering
-Science, University of Oxford, Parks Road, Oxford, OX1 3PJ, United Kingdom,
-paul.goulart@eng.ox.ac.uk, eng.ox.ac.uk/control. For details see clarabel.org.
+Copyright 2022 Paul Goulart and University of Oxford Control Group,
+Department of Engineering Science, University of Oxford, Parks Road,
+Oxford, OX1 3PJ, United Kingdom, paul.goulart@eng.ox.ac.uk,
+eng.ox.ac.uk/control. For details see clarabel.org.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
