@@ -124,3 +124,4 @@ fabric.properties
 
 /src/main/resources/natives/windows_64/clarabel_c.dll
 /src/main/resources/natives/linux_64/libclarabel_c.so
+/src/main/resources/natives/osx_arm64/libclarabel_c.dylib
