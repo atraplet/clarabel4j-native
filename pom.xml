@@ -123,7 +123,7 @@
                         <configuration>
                             <url>${natives.download.url}/v${natives.lib.version}/libclarabel_c.so</url>
                             <outputDirectory>${project.basedir}/${natives.dir}/linux_64</outputDirectory>
-                            <sha256>2bdffe2b3b9e21dd2e69f375a634ea3ec01271c9f3775ac6521fe5ea188fc22d</sha256>
+                            <sha256>08c7493d55cd5230fc361f192696fda158142fd9c1b1122e6386a55629155cfc</sha256>
                         </configuration>
                     </execution>
                     <execution>
@@ -135,7 +135,7 @@
                         <configuration>
                             <url>${natives.download.url}/v${natives.lib.version}/clarabel_c.dll</url>
                             <outputDirectory>${project.basedir}/${natives.dir}/windows_64</outputDirectory>
-                            <sha256>4dd368e68725a1a932f51e02aae87f88cefa95718f3b6b5ab3fb02b3f3339336</sha256>
+                            <sha256>0457eda42532ae2d12532f7b6471a1d9f0f41bcb2f09a523882e79f45c1286a4</sha256>
                         </configuration>
                     </execution>
                     <execution>
@@ -147,7 +147,7 @@
                         <configuration>
                             <url>${natives.download.url}/v${natives.lib.version}/libclarabel_c.dylib</url>
                             <outputDirectory>${project.basedir}/${natives.dir}/osx_arm64</outputDirectory>
-                            <sha256>9334e8ec62f8f0e10f5072980fc1bf1bfa27a65ba50efc1c624fb67278f9e01f</sha256>
+                            <sha256>c6af2579cbed601c0e6bfe26feb48fff28da54ffd1541c7682f5598c94e153fa</sha256>
                         </configuration>
                     </execution>
                 </executions>
