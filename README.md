@@ -4,7 +4,7 @@
 [![Maven Central](https://img.shields.io/maven-central/v/com.ustermetrics/clarabel4j-native)](https://central.sonatype.com/artifact/com.ustermetrics/clarabel4j-native)
 [![Apache License, Version 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://github.com/atraplet/clarabel4j-native/blob/master/LICENSE)
 
-clarabel4j-native (Clarabel Solver for Java Native Libraries) contains shared library release binaries
+clarabel4j-native (Clarabel Solver for Java Native Libraries) bundles shared library release binaries
 of [Clarabel](https://clarabel.org) for [clarabel4j](https://github.com/atraplet/clarabel4j) for Linux (linux_64), Windows (windows_64), and MacOS (osx_arm64).
 
 ## Usage
