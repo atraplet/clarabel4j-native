@@ -1,0 +1,11 @@
+Clarabel Solver for Java Native Libraries
+Copyright (C) 2022-2024 Uster Metrics GmbH, Steinstrasse 9B,
+CH-8610 Uster, Switzerland, info@ustermetrics.com, www.ustermetrics.com
+
+The following components are bundled in this library:
+
+Shared library release binaries of Clarabel
+Copyright 2022 University of Oxford Control Group, Department of
+Engineering Science, University of Oxford, Parks Road, Oxford, OX1 3PJ,
+United Kingdom, paul.goulart@eng.ox.ac.uk, clarabel.org
+Licensed under the Apache License, version 2.0
