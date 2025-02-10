@@ -1,4 +1,4 @@
-name: Build native
+name: Build Native
 
 on:
   push:
@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
+
+env:
+  LIB_NAME: clarabel_c
 
 jobs:
   build-linux:
@@ -15,7 +18,6 @@ jobs:
         with:
           submodules: 'recursive'
           repository: oxfordcontrol/Clarabel.cpp
-#          path: clarabelcpp
       - name: Install Eigen
         run: |
           sudo apt-get update
@@ -25,3 +27,8 @@ jobs:
         run: |
           cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" -S ./ -B ./build
           cmake --build ./build --target all
+      - name: Upload library
+        uses: actions/upload-artifact@v4
+        with:
+          name: lib${{ env.LIB_NAME }}.so
+          path: rust_wrapper/target/release/lib${{ env.LIB_NAME }}.so
