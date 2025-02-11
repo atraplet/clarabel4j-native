@@ -110,49 +110,6 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>com.googlecode.maven-download-plugin</groupId>
-                <artifactId>download-maven-plugin</artifactId>
-                <version>1.13.0</version>
-                <executions>
-                    <execution>
-                        <id>download libclarabel_c.so</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>wget</goal>
-                        </goals>
-                        <configuration>
-                            <url>${natives.download.url}/v${natives.lib.version}/libclarabel_c.so</url>
-                            <outputDirectory>${project.basedir}/${natives.dir}/linux_64</outputDirectory>
-                            <sha256>08c7493d55cd5230fc361f192696fda158142fd9c1b1122e6386a55629155cfc</sha256>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>download clarabel_c.dll</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>wget</goal>
-                        </goals>
-                        <configuration>
-                            <url>${natives.download.url}/v${natives.lib.version}/clarabel_c.dll</url>
-                            <outputDirectory>${project.basedir}/${natives.dir}/windows_64</outputDirectory>
-                            <sha256>0457eda42532ae2d12532f7b6471a1d9f0f41bcb2f09a523882e79f45c1286a4</sha256>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>download libclarabel_c.dylib</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>wget</goal>
-                        </goals>
-                        <configuration>
-                            <url>${natives.download.url}/v${natives.lib.version}/libclarabel_c.dylib</url>
-                            <outputDirectory>${project.basedir}/${natives.dir}/osx_arm64</outputDirectory>
-                            <sha256>c6af2579cbed601c0e6bfe26feb48fff28da54ffd1541c7682f5598c94e153fa</sha256>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.4.2</version>
