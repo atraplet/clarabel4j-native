@@ -1,10 +1,15 @@
-name: Build Native
+name: Build Natives
 
 on:
   workflow_call:
+    inputs:
+      native-lib-version:
+        required: true
+        type: string
 
 env:
   LIB_NAME: clarabel_c
+  REPOSITORY: oxfordcontrol/Clarabel.cpp
 
 jobs:
   build-linux:
@@ -13,7 +18,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: 'recursive'
-          repository: oxfordcontrol/Clarabel.cpp
+          repository: ${{ env.REPOSITORY }}
+          ref: v${{ inputs.native-lib-version }}
       - name: Install Eigen
         run: |
           sudo apt-get update
