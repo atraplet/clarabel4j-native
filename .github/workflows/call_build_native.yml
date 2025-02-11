@@ -18,7 +18,7 @@ jobs:
         id: get-natives-lib-version
         shell: bash
         run: |
-          NATIVES_LIB_VERSION=$(mvn help:evaluate -Dexpression=maven.compiler.source -q -DforceStdout)
+          NATIVES_LIB_VERSION=$(mvn help:evaluate -Dexpression=natives.lib.version -q -DforceStdout)
           echo "natives-lib-version=$NATIVES_LIB_VERSION" >> $GITHUB_OUTPUT
 
   build-natives:
