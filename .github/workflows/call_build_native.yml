@@ -8,25 +8,27 @@ on:
   workflow_dispatch:
 
 jobs:
-#  pre-build:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v4
-#      - name: Get native library version from Maven project
-#        shell: bash
-#        run: |
-#          NATIVE_LIB_VERSION=$(mvn help:evaluate -Dexpression=natives.lib.version -q -DforceStdout)
-#          echo "NATIVE_LIB_VERSION=$NATIVE_LIB_VERSION" >> GITHUB_OUTPUT
+  pre-build:
+    runs-on: ubuntu-latest
+    outputs:
+      natives-lib-version: ${{ steps.get-natives-lib-version.outputs.natives-lib-version }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Get natives library version from Maven project
+        id: get-natives-lib-version
+        shell: bash
+        run: |
+          echo "natives-lib-version=$(mvn help:evaluate -Dexpression=natives.lib.version -q -DforceStdout)" >> GITHUB_OUTPUT
 
-  build-native:
-#    needs: [ pre-build ]
+  build-natives:
+    needs: [ pre-build ]
     uses: atraplet/clarabel4j-native/.github/workflows/build_natives.yml@feature/add_native_build
     with:
-      native-lib-version: 0.10.0
+      natives-lib-version: ${{needs.pre-build.outputs.natives-lib-version}}
 
   build:
     runs-on: ubuntu-latest
-    needs: [ build-native ]
+    needs: [ build-natives ]
     steps:
       - uses: actions/checkout@v4
       - name: Download libraries
