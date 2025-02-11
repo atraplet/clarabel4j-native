@@ -19,7 +19,7 @@ jobs:
         with:
           submodules: 'recursive'
           repository: ${{ env.REPOSITORY }}
-          ref: ${{ inputs.natives-lib-version }}
+          ref: v${{ inputs.natives-lib-version }}
       - name: Install Eigen
         run: |
           sudo apt-get update
