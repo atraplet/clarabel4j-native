@@ -8,8 +8,21 @@ on:
   workflow_dispatch:
 
 jobs:
+#  pre-build:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v4
+#      - name: Get native library version from Maven project
+#        shell: bash
+#        run: |
+#          NATIVE_LIB_VERSION=$(mvn help:evaluate -Dexpression=natives.lib.version -q -DforceStdout)
+#          echo "NATIVE_LIB_VERSION=$NATIVE_LIB_VERSION" >> GITHUB_OUTPUT
+
   build-native:
-    uses: atraplet/clarabel4j-native/.github/workflows/build_native.yml@feature/add_native_build
+#    needs: [ pre-build ]
+    uses: atraplet/clarabel4j-native/.github/workflows/build_natives.yml@feature/add_native_build
+    with:
+      native-lib-version: 0.10.0
 
   build:
     runs-on: ubuntu-latest
@@ -21,12 +34,6 @@ jobs:
         with:
           name: libclarabel_c.so
           path: src/main/resources/natives/linux_64
-      - name: Check
-        shell: bash
-        run: |
-          pwd
-          ls -la ./
-          ls -la ./src/main/resources/natives/linux_64
       - name: Get JDK version from Maven project
         shell: bash
         run: |
