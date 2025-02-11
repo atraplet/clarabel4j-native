@@ -16,7 +16,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <git.repository>https://github.com/atraplet/${project.artifactId}</git.repository>
         <natives.dir>src/main/resources/natives</natives.dir>
-        <natives.lib.version>0.9.0</natives.lib.version>
+        <natives.lib.version>0.10.0</natives.lib.version>
         <natives.download.url>https://github.com/atraplet/Clarabel.cpp/releases/download</natives.download.url>
     </properties>
 
