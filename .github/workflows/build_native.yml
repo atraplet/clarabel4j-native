@@ -2,7 +2,7 @@ name: Build Native
 
 on:
   push:
-    branches: [ "feature/add_native_build" ]
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:

@@ -1,0 +1,26 @@
+name: Call Build Native
+
+on:
+  push:
+    branches: [ "feature/add_native_build" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-native:
+    uses: atraplet/clarabel4j-native/.github/workflows/build_native.yml@feature/add_native_build
+
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download libraries
+        uses: actions/download-artifact@v4
+        with:
+          path: build
+          merge-multiple: true
+      - name: Check
+        shell: bash
+        run: |
+          cd build
+          ls -la
