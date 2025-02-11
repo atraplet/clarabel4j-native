@@ -24,7 +24,6 @@ jobs:
       - name: Check
         shell: bash
         run: |
-          cd build
           pwd
           ls -la ./
           ls -la ./src/main/resources/natives/linux_64
