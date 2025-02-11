@@ -3,7 +3,7 @@ name: Build Natives
 on:
   workflow_call:
     inputs:
-      native-lib-version:
+      natives-lib-version:
         required: true
         type: string
 
@@ -19,7 +19,7 @@ jobs:
         with:
           submodules: 'recursive'
           repository: ${{ env.REPOSITORY }}
-          ref: v${{ inputs.native-lib-version }}
+          ref: v${{ inputs.natives-lib-version }}
       - name: Install Eigen
         run: |
           sudo apt-get update
