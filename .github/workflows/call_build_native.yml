@@ -18,14 +18,14 @@ jobs:
         id: get-natives-lib-version
         shell: bash
         run: |
-          echo "natives-lib-version=$(mvn help:evaluate -Dexpression=natives.lib.version -q -DforceStdout)" >> GITHUB_OUTPUT
+          NATIVES_LIB_VERSION=$(mvn help:evaluate -Dexpression=maven.compiler.source -q -DforceStdout)
+          echo "natives-lib-version=$NATIVES_LIB_VERSION" >> $GITHUB_OUTPUT
 
   build-natives:
     needs: [ pre-build ]
     uses: atraplet/clarabel4j-native/.github/workflows/build_natives.yml@feature/add_native_build
     with:
-      natives-lib-version: 0.10.0
-      #${{needs.pre-build.outputs.natives-lib-version}}
+      natives-lib-version: ${{needs.pre-build.outputs.natives-lib-version}}
 
   build:
     runs-on: ubuntu-latest
