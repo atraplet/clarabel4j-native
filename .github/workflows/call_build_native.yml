@@ -13,6 +13,7 @@ jobs:
 
   download:
     runs-on: ubuntu-latest
+    needs: [ build-native ]
     steps:
       - name: Download libraries
         uses: actions/download-artifact@v4
