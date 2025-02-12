@@ -53,12 +53,12 @@ jobs:
           cmake -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows \
             -DCMAKE_BUILD_TYPE=Release -G "Visual Studio 17 2022" -S ./ -B ./build
           cmake --build ./build --config Release --target ALL_BUILD
-          ls -la build/bin/Release/
+          ls -la rust_wrapper/target/release/
       - name: Upload library
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.LIB_NAME }}.dll
-          path: build/bin/Release/${{ env.LIB_NAME }}.dll.lib
+          path: rust_wrapper/target/release/${{ env.LIB_NAME }}.dll
 
   build-macos:
     runs-on: macos-latest
