@@ -43,28 +43,10 @@ jobs:
           submodules: 'recursive'
           repository: ${{ env.REPOSITORY }}
           ref: v${{ inputs.natives-lib-version }}
-      - name: Setup msys2
-        uses: msys2/setup-msys2@v2
-        with:
-          msystem: UCRT64
-          update: true
-          install: >-
-            mingw-w64-ucrt-x86_64-toolchain
-            mingw-w64-ucrt-x86_64-cmake
-            mingw-w64-ucrt-x86_64-ninja
-            mingw-w64-ucrt-x86_64-rust
-            mingw-w64-ucrt-x86_64-cbindgen
-            mingw-w64-ucrt-x86_64-eigen3
-      - name: Build
-        shell: msys2 {0}
+      - name: Install Eigen
+        shell: bash
         run: |
-          cmake -DCMAKE_BUILD_TYPE=Release -DWIN32 -G Ninja -S ./ -B ./build
-          cmake --build ./build --target libclarabel_c_shared
-      - name: Upload library
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ env.LIB_NAME }}.dll
-          path: rust_wrapper/target/release/${{ env.LIB_NAME }}.dll
+          find C:/vcpkg/packages/vcpkg-cmake_x64-windows -name vcpkg.cmake
 
   build-macos:
     runs-on: macos-latest
