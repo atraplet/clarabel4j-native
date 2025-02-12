@@ -34,3 +34,26 @@ jobs:
         with:
           name: lib${{ env.LIB_NAME }}.so
           path: rust_wrapper/target/release/lib${{ env.LIB_NAME }}.so
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+          repository: ${{ env.REPOSITORY }}
+          ref: v${{ inputs.natives-lib-version }}
+      - name: Install Eigen
+        shell: bash
+        run: |
+          vcpkg install eigen3:x64-windows
+      - name: Build
+        shell: bash
+        run: |
+          cmake -G "Visual Studio 17 2022" -S ./ -B ./build
+          cmake --build ./build --config Release --target ALL_BUILD
+      - name: Upload library
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.LIB_NAME }}.dll
+          path: rust_wrapper/target/release/${{ env.LIB_NAME }}.dll
