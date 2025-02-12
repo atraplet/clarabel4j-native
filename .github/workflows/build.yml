@@ -7,14 +7,52 @@ on:
     branches: [ "master" ]
   workflow_call:
 
+env:
+  LIB_NAME: clarabel_c
+
 jobs:
+  pre-build:
+    runs-on: ubuntu-latest
+    outputs:
+      natives-lib-version: ${{ steps.get-natives-lib-version.outputs.natives-lib-version }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Get natives library version from Maven project
+        id: get-natives-lib-version
+        shell: bash
+        run: |
+          NATIVES_LIB_VERSION=$(mvn help:evaluate -Dexpression=natives.lib.version -q -DforceStdout)
+          echo "natives-lib-version=$NATIVES_LIB_VERSION" >> $GITHUB_OUTPUT
+
+  build-natives:
+    needs: [ pre-build ]
+    uses: atraplet/clarabel4j-native/.github/workflows/build_natives.yml@master
+    with:
+      natives-lib-version: ${{needs.pre-build.outputs.natives-lib-version}}
+
   build:
     strategy:
       matrix:
         os: [ ubuntu-latest, windows-latest, macos-latest ]
     runs-on: ${{ matrix.os }}
+    needs: [ build-natives ]
     steps:
       - uses: actions/checkout@v4
+      - name: Download Linux library
+        uses: actions/download-artifact@v4
+        with:
+          name: lib${{ env.LIB_NAME }}.so
+          path: src/main/resources/natives/linux_64
+      - name: Download Windows library
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.LIB_NAME }}.dll
+          path: src/main/resources/natives/windows_64
+      - name: Download Mac OS library
+        uses: actions/download-artifact@v4
+        with:
+          name: lib${{ env.LIB_NAME }}.dylib
+          path: src/main/resources/natives/osx_arm64
       - name: Get JDK version from Maven project
         shell: bash
         run: |
