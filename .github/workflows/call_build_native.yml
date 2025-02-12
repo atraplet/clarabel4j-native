@@ -7,6 +7,9 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 
+env:
+  LIB_NAME: clarabel_c
+
 jobs:
   pre-build:
     runs-on: ubuntu-latest
