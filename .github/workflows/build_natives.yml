@@ -59,7 +59,7 @@ jobs:
         shell: msys2 {0}
         run: |
           cmake -DCMAKE_BUILD_TYPE=Release -G Ninja -S ./ -B ./build
-          cmake --build ./build --target all
+          cmake --build ./build --target libclarabel_c_shared
       - name: Upload library
         uses: actions/upload-artifact@v4
         with:
