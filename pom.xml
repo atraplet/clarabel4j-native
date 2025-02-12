@@ -16,7 +16,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <git.repository>https://github.com/atraplet/${project.artifactId}</git.repository>
         <natives.dir>src/main/resources/natives</natives.dir>
-        <natives.lib.version>0.9.0</natives.lib.version>
+        <natives.lib.version>0.10.0</natives.lib.version>
         <natives.download.url>https://github.com/atraplet/Clarabel.cpp/releases/download</natives.download.url>
     </properties>
 
@@ -75,22 +75,6 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-clean-plugin</artifactId>
-                <version>3.4.0</version>
-                <configuration>
-                    <filesets>
-                        <fileset>
-                            <directory>${natives.dir}</directory>
-                            <includes>
-                                <include>linux_64/*</include>
-                                <include>windows_64/*</include>
-                            </includes>
-                        </fileset>
-                    </filesets>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
                 <version>3.6.0</version>
@@ -105,49 +89,6 @@
                             <value>${project.artifactId}</value>
                             <regex>-</regex>
                             <replacement>_</replacement>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>com.googlecode.maven-download-plugin</groupId>
-                <artifactId>download-maven-plugin</artifactId>
-                <version>1.13.0</version>
-                <executions>
-                    <execution>
-                        <id>download libclarabel_c.so</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>wget</goal>
-                        </goals>
-                        <configuration>
-                            <url>${natives.download.url}/v${natives.lib.version}/libclarabel_c.so</url>
-                            <outputDirectory>${project.basedir}/${natives.dir}/linux_64</outputDirectory>
-                            <sha256>08c7493d55cd5230fc361f192696fda158142fd9c1b1122e6386a55629155cfc</sha256>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>download clarabel_c.dll</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>wget</goal>
-                        </goals>
-                        <configuration>
-                            <url>${natives.download.url}/v${natives.lib.version}/clarabel_c.dll</url>
-                            <outputDirectory>${project.basedir}/${natives.dir}/windows_64</outputDirectory>
-                            <sha256>0457eda42532ae2d12532f7b6471a1d9f0f41bcb2f09a523882e79f45c1286a4</sha256>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>download libclarabel_c.dylib</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>wget</goal>
-                        </goals>
-                        <configuration>
-                            <url>${natives.download.url}/v${natives.lib.version}/libclarabel_c.dylib</url>
-                            <outputDirectory>${project.basedir}/${natives.dir}/osx_arm64</outputDirectory>
-                            <sha256>c6af2579cbed601c0e6bfe26feb48fff28da54ffd1541c7682f5598c94e153fa</sha256>
                         </configuration>
                     </execution>
                 </executions>

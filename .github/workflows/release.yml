@@ -5,6 +5,9 @@ on:
     tags:
       - 'v*'
 
+env:
+  LIB_NAME: clarabel_c
+
 jobs:
   build:
     uses: atraplet/clarabel4j-native/.github/workflows/build.yml@master
@@ -14,6 +17,21 @@ jobs:
     needs: [ build ]
     steps:
       - uses: actions/checkout@v4
+      - name: Download Linux library
+        uses: actions/download-artifact@v4
+        with:
+          name: lib${{ env.LIB_NAME }}.so
+          path: src/main/resources/natives/linux_64
+      - name: Download Windows library
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.LIB_NAME }}.dll
+          path: src/main/resources/natives/windows_64
+      - name: Download Mac OS library
+        uses: actions/download-artifact@v4
+        with:
+          name: lib${{ env.LIB_NAME }}.dylib
+          path: src/main/resources/natives/osx_arm64
       - name: Get JDK version from Maven project
         run: |
           JDK_VERSION=$(mvn help:evaluate -Dexpression=maven.compiler.source -q -DforceStdout)

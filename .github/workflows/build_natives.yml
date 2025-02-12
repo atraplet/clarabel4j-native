@@ -1,0 +1,82 @@
+name: Build Natives
+
+on:
+  workflow_call:
+    inputs:
+      natives-lib-version:
+        required: true
+        type: string
+
+env:
+  LIB_NAME: clarabel_c
+  REPOSITORY: oxfordcontrol/Clarabel.cpp
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+          repository: ${{ env.REPOSITORY }}
+          ref: v${{ inputs.natives-lib-version }}
+      - name: Install Eigen
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libeigen3-dev
+      - name: Build
+        shell: bash
+        run: |
+          cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" -S ./ -B ./build
+          cmake --build ./build --target all
+      - name: Upload library
+        uses: actions/upload-artifact@v4
+        with:
+          name: lib${{ env.LIB_NAME }}.so
+          path: rust_wrapper/target/release/lib${{ env.LIB_NAME }}.so
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+          repository: ${{ env.REPOSITORY }}
+          ref: v${{ inputs.natives-lib-version }}
+      - name: Install Eigen
+        shell: bash
+        run: |
+          vcpkg install eigen3:x64-windows
+      - name: Build
+        shell: bash
+        run: |
+          cmake -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows \
+            -DCMAKE_BUILD_TYPE=Release -G "Visual Studio 17 2022" -S ./ -B ./build
+          cmake --build ./build --config Release --target ALL_BUILD
+      - name: Upload library
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.LIB_NAME }}.dll
+          path: rust_wrapper/target/release/${{ env.LIB_NAME }}.dll
+
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+          repository: ${{ env.REPOSITORY }}
+          ref: v${{ inputs.natives-lib-version }}
+      - name: Install Eigen
+        run: |
+          brew install eigen
+      - name: Build
+        shell: bash
+        run: |
+          cmake -DCMAKE_BUILD_TYPE=Release -G Xcode -S ./ -B ./build
+          cmake --build ./build --config Release --target ALL_BUILD
+      - name: Upload library
+        uses: actions/upload-artifact@v4
+        with:
+          name: lib${{ env.LIB_NAME }}.dylib
+          path: rust_wrapper/target/release/lib${{ env.LIB_NAME }}.dylib
