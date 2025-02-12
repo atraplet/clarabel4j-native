@@ -46,7 +46,8 @@ jobs:
       - name: Install Eigen
         shell: bash
         run: |
-          find C:/vcpkg/packages/vcpkg-cmake_x64-windows -name vcpkg.cmake
+          vcpkg install eigen3:x64-windows
+          vcpkg integrate install
 
   build-macos:
     runs-on: macos-latest
