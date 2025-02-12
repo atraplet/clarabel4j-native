@@ -28,15 +28,31 @@ jobs:
       natives-lib-version: ${{needs.pre-build.outputs.natives-lib-version}}
 
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+    runs-on: ${{ matrix.os }}
     needs: [ build-natives ]
     steps:
       - uses: actions/checkout@v4
-      - name: Download libraries
+      - name: Download Linux library
+        if: ${{ matrix.os == 'ubuntu-latest' }}
         uses: actions/download-artifact@v4
         with:
-          name: libclarabel_c.so
+          name: lib${{ env.LIB_NAME }}.so
           path: src/main/resources/natives/linux_64
+      - name: Download Windows library
+        if: ${{ matrix.os == 'windows-latest' }}
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.LIB_NAME }}.dll
+          path: src/main/resources/natives/windows_64
+      - name: Download Mac OS library
+        if: ${{ matrix.os == 'macos-latest' }}
+        uses: actions/download-artifact@v4
+        with:
+          name: lib${{ env.LIB_NAME }}.dylib
+          path: src/main/resources/natives/osx_arm64
       - name: Get JDK version from Maven project
         shell: bash
         run: |
