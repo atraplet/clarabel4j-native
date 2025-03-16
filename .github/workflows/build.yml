@@ -11,24 +11,8 @@ env:
   LIB_NAME: clarabel_c
 
 jobs:
-  pre-build:
-    runs-on: ubuntu-latest
-    outputs:
-      lib-version: ${{ steps.get-lib-version.outputs.lib-version }}
-    steps:
-      - uses: actions/checkout@v4
-      - name: Get natives library version from Maven project
-        id: get-lib-version
-        shell: bash
-        run: |
-          LIB_VERSION=$(mvn help:evaluate -Dexpression=natives.lib.version -q -DforceStdout)
-          echo "lib-version=$LIB_VERSION" >> $GITHUB_OUTPUT
-
   build-natives:
-    needs: [ pre-build ]
     uses: atraplet/clarabel4j-native/.github/workflows/build_natives.yml@master
-    with:
-      lib-version: ${{needs.pre-build.outputs.lib-version}}
 
   build:
     strategy:
