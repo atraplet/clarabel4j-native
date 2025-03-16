@@ -14,21 +14,21 @@ jobs:
   pre-build:
     runs-on: ubuntu-latest
     outputs:
-      natives-lib-version: ${{ steps.get-natives-lib-version.outputs.natives-lib-version }}
+      lib-version: ${{ steps.get-lib-version.outputs.lib-version }}
     steps:
       - uses: actions/checkout@v4
       - name: Get natives library version from Maven project
-        id: get-natives-lib-version
+        id: get-lib-version
         shell: bash
         run: |
-          NATIVES_LIB_VERSION=$(mvn help:evaluate -Dexpression=natives.lib.version -q -DforceStdout)
-          echo "natives-lib-version=$NATIVES_LIB_VERSION" >> $GITHUB_OUTPUT
+          LIB_VERSION=$(mvn help:evaluate -Dexpression=natives.lib.version -q -DforceStdout)
+          echo "lib-version=$LIB_VERSION" >> $GITHUB_OUTPUT
 
   build-natives:
     needs: [ pre-build ]
     uses: atraplet/clarabel4j-native/.github/workflows/build_natives.yml@master
     with:
-      natives-lib-version: ${{needs.pre-build.outputs.natives-lib-version}}
+      lib-version: ${{needs.pre-build.outputs.lib-version}}
 
   build:
     strategy:
