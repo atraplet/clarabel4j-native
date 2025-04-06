@@ -9,7 +9,7 @@
     <version>1-SNAPSHOT</version>
 
     <properties>
-        <java.version>23</java.version>
+        <java.version>24</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.compiler.proc>full</maven.compiler.proc>
