@@ -23,17 +23,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Download Linux library
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: lib${{ env.LIB_NAME }}.so
           path: src/main/resources/natives/linux_64
       - name: Download Windows library
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: ${{ env.LIB_NAME }}.dll
           path: src/main/resources/natives/windows_64
       - name: Download Mac OS library
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: lib${{ env.LIB_NAME }}.dylib
           path: src/main/resources/natives/osx_arm64
