@@ -21,7 +21,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     needs: [ build-natives ]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Download Linux library
         uses: actions/download-artifact@v5
         with:
