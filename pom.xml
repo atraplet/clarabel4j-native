@@ -137,6 +137,10 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.5.3</version>
+                <configuration>
+                    <argLine>@{argLine} --enable-native-access=org.scijava.nativelib
+                    </argLine>
+                </configuration>
             </plugin>
         </plugins>
     </build>
