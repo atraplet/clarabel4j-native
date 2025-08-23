@@ -5,7 +5,8 @@
 [![Apache License, Version 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://github.com/atraplet/clarabel4j-native/blob/master/LICENSE)
 
 clarabel4j-native (Clarabel Solver for Java Native Libraries) bundles shared library release binaries
-of [Clarabel](https://clarabel.org) for [clarabel4j](https://github.com/atraplet/clarabel4j) for Linux (linux_64), Windows (windows_64), and MacOS (osx_arm64).
+of [Clarabel](https://clarabel.org) for [clarabel4j](https://github.com/atraplet/clarabel4j) for Linux (linux_64),
+Windows (windows_64), and MacOS (osx_arm64).
 
 ## Usage
 
@@ -19,9 +20,13 @@ your `pom.xml`
     <groupId>com.ustermetrics</groupId>
     <artifactId>clarabel4j-native</artifactId>
     <version>x.y.z</version>
+    <classifier>platform</classifier>
     <scope>runtime</scope>
 </dependency>
 ```
+
+where `x.y.z` is the version of the library and `platform` is one of `linux_64`, `windows_64`, or `osx_arm64`. If no
+`classifier` is specified, the library will include binaries for all platforms.
 
 ## Build
 
