@@ -72,7 +72,7 @@ jobs:
       - name: Build
         shell: bash
         run: |
-          cmake -DCMAKE_BUILD_TYPE=Release -DCLARABEL_CARGO_FEATURES="faer-sparse,pardiso-mkl" -G Xcode -S ./ -B ./build
+          cmake -DCMAKE_BUILD_TYPE=Release -DCLARABEL_CARGO_FEATURES="faer-sparse" -G Xcode -S ./ -B ./build
           cmake --build ./build --config Release --target ALL_BUILD
       - name: Upload library
         uses: actions/upload-artifact@v4
