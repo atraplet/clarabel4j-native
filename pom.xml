@@ -6,7 +6,7 @@
 
     <groupId>com.ustermetrics</groupId>
     <artifactId>clarabel4j-native</artifactId>
-    <version>3-SNAPSHOT</version>
+    <version>3.0.0-0.11.1</version>
 
     <properties>
         <java.version>24</java.version>
