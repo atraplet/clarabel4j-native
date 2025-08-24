@@ -5,7 +5,7 @@ on:
 
 env:
   LIB_NAME: clarabel_c
-  LIB_VERSION: v0.10.0
+  LIB_VERSION: v0.11.1
   REPOSITORY: oxfordcontrol/Clarabel.cpp
 
 jobs:
@@ -24,7 +24,8 @@ jobs:
       - name: Build
         shell: bash
         run: |
-          cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" -S ./ -B ./build
+          cmake -DCMAKE_BUILD_TYPE=Release -DCLARABEL_CARGO_FEATURES="faer-sparse,pardiso-mkl" -G "Unix Makefiles" \
+            -S ./ -B ./build
           cmake --build ./build --target all
       - name: Upload library
         uses: actions/upload-artifact@v4
@@ -48,7 +49,8 @@ jobs:
         shell: bash
         run: |
           cmake -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows \
-            -DCMAKE_BUILD_TYPE=Release -G "Visual Studio 17 2022" -S ./ -B ./build
+            -DCLARABEL_CARGO_FEATURES="faer-sparse,pardiso-mkl" -DCMAKE_BUILD_TYPE=Release -G "Visual Studio 17 2022" \
+            -S ./ -B ./build
           cmake --build ./build --config Release --target ALL_BUILD
       - name: Upload library
         uses: actions/upload-artifact@v4
@@ -70,7 +72,7 @@ jobs:
       - name: Build
         shell: bash
         run: |
-          cmake -DCMAKE_BUILD_TYPE=Release -G Xcode -S ./ -B ./build
+          cmake -DCMAKE_BUILD_TYPE=Release -DCLARABEL_CARGO_FEATURES="faer-sparse,pardiso-mkl" -G Xcode -S ./ -B ./build
           cmake --build ./build --config Release --target ALL_BUILD
       - name: Upload library
         uses: actions/upload-artifact@v4
