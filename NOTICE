@@ -2,7 +2,7 @@ Clarabel Solver for Java Native Libraries
 Copyright (C) 2022-2025 Uster Metrics GmbH, Steinstrasse 9B,
 CH-8610 Uster, Switzerland, info@ustermetrics.com, www.ustermetrics.com
 
-This library includes content from the following libraries:
+This library includes content from the following software:
 
 * Clarabel.cpp: C/C++ interface to the Clarabel Interior-point solver for
 convex conic optimisation problems, https://github.com/oxfordcontrol/Clarabel.cpp
