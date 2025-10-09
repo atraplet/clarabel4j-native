@@ -17,10 +17,6 @@ jobs:
           submodules: 'recursive'
           repository: ${{ env.REPOSITORY }}
           ref: ${{ env.LIB_VERSION }}
-      - name: Install Eigen
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libeigen3-dev
       - name: Build
         shell: bash
         run: |
@@ -41,10 +37,6 @@ jobs:
           submodules: 'recursive'
           repository: ${{ env.REPOSITORY }}
           ref: ${{ env.LIB_VERSION }}
-      - name: Install Eigen
-        shell: bash
-        run: |
-          vcpkg install eigen3:x64-windows
       - name: Build
         shell: bash
         run: |
@@ -66,9 +58,6 @@ jobs:
           submodules: 'recursive'
           repository: ${{ env.REPOSITORY }}
           ref: ${{ env.LIB_VERSION }}
-      - name: Install Eigen
-        run: |
-          brew install eigen
       - name: Build
         shell: bash
         run: |
