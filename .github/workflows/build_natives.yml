@@ -20,14 +20,14 @@ jobs:
       - uses: actions/checkout@v5
         with:
           sparse-checkout: patches
-          path: clarabel4j-native
+          path: this-repo
       - name: Build
         shell: bash
         run: |
           ls -la
-          ls -la clarabel4j-native
-          ls -la clarabel4j-native/patches
-          git apply clarabel4j-native/patches/*.patch
+          ls -la this-repo
+          ls -la this-repo/patches
+          git apply this-repo/patches/*.patch
           cmake -DCMAKE_BUILD_TYPE=Release -DCLARABEL_CARGO_FEATURES="faer-sparse,pardiso-mkl" -G "Unix Makefiles" \
             -S ./ -B ./build
           cmake --build ./build --target libclarabel_c
