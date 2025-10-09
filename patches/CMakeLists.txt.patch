@@ -1,0 +1,29 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+--- a/CMakeLists.txt	(revision 0de6259a3edfd5cc041ec42b2148599ce63e73cb)
++++ b/CMakeLists.txt	(date 1760036013270)
+@@ -45,18 +45,18 @@
+ # Get dependencies
+ 
+ # Eigen3
+-if (NOT TARGET Eigen3::Eigen)
+-  find_package(Eigen3 CONFIG REQUIRED VERSION 3.4)
+-  message(STATUS "Clarabel.cpp: `Eigen3` package found.  Version ${Eigen3_VERSION}.")
+-else()
+-  message(STATUS "Clarabel.cpp: `Eigen3` package already exists.  Version ${Eigen3_VERSION}.")
+-endif()
++#if (NOT TARGET Eigen3::Eigen)
++#  find_package(Eigen3 CONFIG REQUIRED VERSION 3.4)
++#  message(STATUS "Clarabel.cpp: `Eigen3` package found.  Version ${Eigen3_VERSION}.")
++#else()
++#  message(STATUS "Clarabel.cpp: `Eigen3` package already exists.  Version ${Eigen3_VERSION}.")
++#endif()
+ 
+ # Build the Rust library
+ add_subdirectory(rust_wrapper)
+ 
+ # Add other subdirectories
+-add_subdirectory(examples)
++#add_subdirectory(examples)
+ 
+ # Add tests
+ option(CLARABEL_BUILD_TESTS "Build the unit tests for Clarabel.cpp" false)
