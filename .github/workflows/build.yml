@@ -12,7 +12,7 @@ env:
 
 jobs:
   build-natives:
-    uses: atraplet/clarabel4j-native/.github/workflows/build_natives.yml@feature/remove_eigen
+    uses: atraplet/clarabel4j-native/.github/workflows/build_natives.yml@master
 
   build:
     strategy:
