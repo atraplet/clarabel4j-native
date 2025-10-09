@@ -24,11 +24,7 @@ jobs:
       - name: Build
         shell: bash
         run: |
-          ls -la
-          ls -la this-repo
-          ls -la this-repo/patches
           git apply this-repo/patches/*.patch
-          more CMakeLists.txt
           cmake -DCMAKE_BUILD_TYPE=Release -DCLARABEL_CARGO_FEATURES="faer-sparse,pardiso-mkl" -G "Unix Makefiles" \
             -S ./ -B ./build
           cmake --build ./build --target libclarabel_c
@@ -46,9 +42,14 @@ jobs:
           submodules: 'recursive'
           repository: ${{ env.REPOSITORY }}
           ref: ${{ env.LIB_VERSION }}
+      - uses: actions/checkout@v5
+        with:
+          sparse-checkout: patches
+          path: this-repo
       - name: Build
         shell: bash
         run: |
+          git apply this-repo/patches/*.patch
           cmake -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows \
             -DCLARABEL_CARGO_FEATURES="faer-sparse,pardiso-mkl" -DCMAKE_BUILD_TYPE=Release -G "Visual Studio 17 2022" \
             -S ./ -B ./build
@@ -67,9 +68,14 @@ jobs:
           submodules: 'recursive'
           repository: ${{ env.REPOSITORY }}
           ref: ${{ env.LIB_VERSION }}
+      - uses: actions/checkout@v5
+        with:
+          sparse-checkout: patches
+          path: this-repo
       - name: Build
         shell: bash
         run: |
+          git apply this-repo/patches/*.patch
           cmake -DCMAKE_BUILD_TYPE=Release -DCLARABEL_CARGO_FEATURES="faer-sparse" -G Xcode -S ./ -B ./build
           cmake --build ./build --config Release --target libclarabel_c
       - name: Upload library
