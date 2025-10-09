@@ -19,8 +19,8 @@ jobs:
           ref: ${{ env.LIB_VERSION }}
       - uses: actions/checkout@v5
         with:
-          sparse-checkout: patches/*.patch
-          path: patches
+          sparse-checkout: patches
+          path: .
       - name: Build
         shell: bash
         run: |
