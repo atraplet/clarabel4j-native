@@ -17,9 +17,13 @@ jobs:
           submodules: 'recursive'
           repository: ${{ env.REPOSITORY }}
           ref: ${{ env.LIB_VERSION }}
+      - uses: actions/checkout@v5
+        with:
+          sparse-checkout: patches
       - name: Build
         shell: bash
         run: |
+          git apply patches/*.patch
           cmake -DCMAKE_BUILD_TYPE=Release -DCLARABEL_CARGO_FEATURES="faer-sparse,pardiso-mkl" -G "Unix Makefiles" \
             -S ./ -B ./build
           cmake --build ./build --target libclarabel_c
