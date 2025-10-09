@@ -23,6 +23,8 @@ jobs:
       - name: Build
         shell: bash
         run: |
+          ls -la
+          ls -la patches
           git apply patches/*.patch
           cmake -DCMAKE_BUILD_TYPE=Release -DCLARABEL_CARGO_FEATURES="faer-sparse,pardiso-mkl" -G "Unix Makefiles" \
             -S ./ -B ./build
