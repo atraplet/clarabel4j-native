@@ -12,12 +12,14 @@ jobs:
   build-linux:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - &checkout_lib
+        uses: actions/checkout@v5
         with:
           submodules: 'recursive'
           repository: ${{ env.REPOSITORY }}
           ref: ${{ env.LIB_VERSION }}
-      - uses: actions/checkout@v5
+      - &checkout_patches
+        uses: actions/checkout@v5
         with:
           sparse-checkout: patches
           path: this-repo
@@ -37,15 +39,8 @@ jobs:
   build-windows:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v5
-        with:
-          submodules: 'recursive'
-          repository: ${{ env.REPOSITORY }}
-          ref: ${{ env.LIB_VERSION }}
-      - uses: actions/checkout@v5
-        with:
-          sparse-checkout: patches
-          path: this-repo
+      - *checkout_lib
+      - *checkout_patches
       - name: Build
         shell: bash
         run: |
@@ -63,15 +58,8 @@ jobs:
   build-macos:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v5
-        with:
-          submodules: 'recursive'
-          repository: ${{ env.REPOSITORY }}
-          ref: ${{ env.LIB_VERSION }}
-      - uses: actions/checkout@v5
-        with:
-          sparse-checkout: patches
-          path: this-repo
+      - *checkout_lib
+      - *checkout_patches
       - name: Build
         shell: bash
         run: |
