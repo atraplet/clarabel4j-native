@@ -12,7 +12,7 @@ env:
 
 jobs:
   build-natives:
-    uses: atraplet/clarabel4j-native/.github/workflows/build_natives.yml@master
+    uses: atraplet/clarabel4j-native/.github/workflows/build_natives.yml@feature/add_caching4rust
 
   build:
     strategy:
