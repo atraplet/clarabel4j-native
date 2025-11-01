@@ -17,7 +17,7 @@ jobs:
     needs: [ build ]
     steps:
       - uses: actions/checkout@v5
-      - uses: ./.github/actions/setup-build
+      - uses: .github/actions/download-libs-and-detect-jdk
       - name: Set up JDK
         uses: actions/setup-java@v5
         with:

@@ -1,5 +1,4 @@
-name: 'Setup Build'
-description: 'Checks out repository, downloads native libraries, and sets JDK_VERSION'
+name: 'Download libs and detect JDK'
 runs:
   using: 'composite'
   steps:
