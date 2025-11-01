@@ -21,6 +21,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     needs: [ build-natives ]
     steps:
+      - uses: actions/checkout@v5
       - uses: ./.github/actions/setup-build
       - name: Set up JDK
         uses: actions/setup-java@v5

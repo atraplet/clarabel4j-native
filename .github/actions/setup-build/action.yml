@@ -3,7 +3,6 @@ description: 'Checks out repository, downloads native libraries, and sets JDK_VE
 runs:
   using: 'composite'
   steps:
-    - uses: actions/checkout@v5
     - name: Download Linux library
       uses: actions/download-artifact@v6
       with:
