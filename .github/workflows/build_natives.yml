@@ -13,13 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - &checkout_lib
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           submodules: 'recursive'
           repository: ${{ env.REPOSITORY }}
           ref: ${{ env.LIB_VERSION }}
       - &checkout_patches
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           sparse-checkout: patches
           path: this-repo
