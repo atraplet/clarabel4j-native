@@ -20,7 +20,7 @@ mvn test -Dtest=LoadLibraryTest#loadLibrary  # Run single test method
 ## Architecture
 
 - **No production Java code** — `src/main/` contains only native binary resources
-- **Native libraries** are built from Clarabel.cpp (v0.11.1) via CMake/Cargo in CI, with patches from `patches/CMakeLists.txt.patch` (disables Eigen3 dep and examples)
+- **Native libraries** are built from Clarabel.cpp (the version is specified in the `build_natives.yml` workflow) via CMake/Cargo in CI, with patches from `patches/CMakeLists.txt.patch` (disables Eigen3 dep and examples)
 - **Platform-specific features:** Linux/Windows enable `faer-sparse,pardiso-mkl`; macOS enables `faer-sparse` only
 - **SciJava NativeLoader** handles platform detection and library extraction at runtime
 - **maven-jar-plugin** creates per-platform JARs using classifiers (`linux_64`, `windows_64`, `osx_arm64`)
