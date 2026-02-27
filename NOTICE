@@ -7,7 +7,7 @@ This library bundles content from the following software:
 * Clarabel.cpp - Clarabel.cpp: C/C++ interface to the Clarabel
 Interior-point solver for convex conic optimisation problems,
 https://github.com/oxfordcontrol/Clarabel.cpp, is distributed under the
-[Apache 2.0 License](https://opensource.org/license/apache-2-0).
+[Apache 2.0 License](https://opensource.org/license/apache-2-0)
 
 Clarabel.cpp depends on code, which was originally developed by
 third-parties and is licensed under additional licenses:
@@ -15,8 +15,8 @@ third-parties and is licensed under additional licenses:
 * Clarabel.rs - Clarabel.rs: Interior-point solver for convex conic
 optimisation problems in Rust, https://github.com/oxfordcontrol/Clarabel.rs,
 is distributed under the
-[Apache 2.0 License](https://opensource.org/license/apache-2-0).
+[Apache 2.0 License](https://opensource.org/license/apache-2-0)
 
 * faer - linear algebra library for rust,
 https://codeberg.org/sarah-quinones/faer, is distributed under the
-[MIT license](https://opensource.org/license/mit).
+[MIT license](https://opensource.org/license/mit)
