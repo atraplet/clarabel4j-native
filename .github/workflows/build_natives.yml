@@ -46,7 +46,7 @@ jobs:
         run: |
           git apply this-repo/patches/*.patch
           cmake -DCLARABEL_CARGO_FEATURES="faer-sparse,pardiso-mkl" -DCMAKE_BUILD_TYPE=Release \
-            -G "Visual Studio 17 2022" -S ./ -B ./build
+            -G "Visual Studio 18 2026" -S ./ -B ./build
           cmake --build ./build --config Release --target libclarabel_c
       - name: Upload library
         uses: actions/upload-artifact@v7
