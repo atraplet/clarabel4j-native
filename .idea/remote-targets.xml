@@ -2,19 +2,19 @@
 <project version="4">
   <component name="RemoteTargetsManager">
     <targets>
-      <target name="WSL" type="wsl" uuid="2e20e51a-03f8-42fd-a85a-db396293d25f">
+      <target name="WSL2" type="wsl" uuid="65c22fa4-a1dc-464a-9315-e08e704654aa">
         <config>
-          <option name="distributionMsId" value="Ubuntu" />
+          <option name="distributionMsId" value="Ubuntu-26.04" />
         </config>
         <ContributedStateBase type="JavaLanguageRuntime">
           <config>
-            <option name="homePath" value="$PROJECT_DIR$/../../../../../usr/lib/jvm/temurin-25-jdk-amd64" />
+            <option name="homePath" value="$PROJECT_DIR$/../../../.sdkman/candidates/java/25.0.4-tem" />
           </config>
         </ContributedStateBase>
         <ContributedStateBase type="MavenRuntime">
           <config>
-            <option name="homePath" value="/usr/share/maven" />
-            <option name="versionString" value="3.8.7" />
+            <option name="homePath" value="C:\Users\atrap\AppData\Local\Programs\IntelliJ IDEA Ultimate\plugins\maven-plugin\lib\maven3" />
+            <option name="versionString" value="3.9.16" />
           </config>
         </ContributedStateBase>
       </target>
