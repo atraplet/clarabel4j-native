@@ -1,22 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ustermetrics</groupId>
     <artifactId>clarabel4j-native</artifactId>
     <version>4-SNAPSHOT</version>
-
-    <properties>
-        <java.version>25</java.version>
-        <slf4j.version>2.0.20</slf4j.version>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
-        <maven.compiler.proc>full</maven.compiler.proc>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <git.repository>https://github.com/atraplet/${project.artifactId}</git.repository>
-    </properties>
 
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Clarabel Solver for Java Native Libraries</description>
@@ -43,6 +32,16 @@
         <developerConnection>scm:git:${git.repository}.git</developerConnection>
         <url>${git.repository}/tree/master</url>
     </scm>
+
+    <properties>
+        <java.version>25</java.version>
+        <slf4j.version>2.0.20</slf4j.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.compiler.proc>full</maven.compiler.proc>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <git.repository>https://github.com/atraplet/${project.artifactId}</git.repository>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -107,10 +106,10 @@
                 <executions>
                     <execution>
                         <id>linux</id>
-                        <phase>package</phase>
                         <goals>
                             <goal>jar</goal>
                         </goals>
+                        <phase>package</phase>
                         <configuration>
                             <classifier>linux_64</classifier>
                             <includes>
@@ -120,10 +119,10 @@
                     </execution>
                     <execution>
                         <id>windows</id>
-                        <phase>package</phase>
                         <goals>
                             <goal>jar</goal>
                         </goals>
+                        <phase>package</phase>
                         <configuration>
                             <classifier>windows_64</classifier>
                             <includes>
@@ -133,10 +132,10 @@
                     </execution>
                     <execution>
                         <id>mac</id>
-                        <phase>package</phase>
                         <goals>
                             <goal>jar</goal>
                         </goals>
+                        <phase>package</phase>
                         <configuration>
                             <classifier>osx_arm64</classifier>
                             <includes>
@@ -153,6 +152,38 @@
                 <configuration>
                     <argLine>--enable-native-access=ALL-UNNAMED</argLine>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.diffplug.spotless</groupId>
+                <artifactId>spotless-maven-plugin</artifactId>
+                <version>3.10.4</version>
+                <configuration>
+                    <java>
+                        <palantirJavaFormat>
+                            <version>2.102.0</version>
+                            <style>PALANTIR</style>
+                            <formatJavadoc>true</formatJavadoc>
+                        </palantirJavaFormat>
+                        <removeUnusedImports/>
+                        <licenseHeader>
+                            <file>${project.basedir}/license-header.txt</file>
+                        </licenseHeader>
+                    </java>
+                    <pom>
+                        <sortPom>
+                            <nrOfIndentSpace>4</nrOfIndentSpace>
+                            <expandEmptyElements>false</expandEmptyElements>
+                            <indentAttribute>schemaLocation</indentAttribute>
+                        </sortPom>
+                    </pom>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
@@ -195,10 +226,10 @@
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
-                                <phase>verify</phase>
                                 <goals>
                                     <goal>sign</goal>
                                 </goals>
+                                <phase>verify</phase>
                                 <configuration>
                                     <gpgArguments>
                                         <arg>--pinentry-mode</arg>
